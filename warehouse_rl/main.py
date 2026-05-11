@@ -6,6 +6,8 @@ from ui import Button, MapCard
 # from simulation import run_simulation
 import simulation
 
+from graphics import load_assets
+
 # --- CONFIG ---
 WIDTH, HEIGHT = 1000, 700
 BACKGROUND = "#0f172a"
@@ -21,6 +23,7 @@ def main():
     pygame.init()
     win = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Q learning simulation - Main Menu")
+    load_assets()
 
     clock = pygame.time.Clock()
 
