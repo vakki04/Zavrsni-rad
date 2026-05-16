@@ -42,7 +42,8 @@ def main():
     gap = 330
 
     for i, (key, config) in enumerate(maps.items()):
-        card = MapCard(key, config, start_x + i * gap, 200, 300, 150)
+        card = MapCard(config["name"], config, start_x + i * gap, 200, 300, 150)
+        card.map_key = key
         cards.append(card)
 
     selected_map = None
@@ -67,7 +68,7 @@ def main():
             # --- BUTTONS ---
             if btn_start.is_clicked(event):
                 if selected_map is not None:
-                    simulation.run_simulation()
+                    simulation.run_simulation(maps[selected_map])
 
         # --- DRAW TITLE ---
         title = title_font.render("Q Learning Simulation", True, TEXT_PRIMARY)
