@@ -146,7 +146,7 @@ def run_simulation(map_config):
 
     screen = pygame.display.set_mode((win_w, win_h))
 
-    pygame.display.set_caption("Warehouse RL — Q-Learning Pixel Art Simulacija")
+    pygame.display.set_caption("Warehouse Q-Learning Simulation")
 
     try:
         font_sm = pygame.font.SysFont("monospace", 14, bold=True)

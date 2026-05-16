@@ -40,7 +40,7 @@ def _graphs_worker(queue, grid, grid_h, grid_w):
 
     fig = plt.figure(figsize=(14, 9), facecolor="#12121c")
     fig.suptitle(
-        "Q-Learning — Analiza učenja | Warehouse RL  [LIVE]",
+        "Warehouse Q-Learning",
         color="#b4c8ff",
         fontsize=13,
         fontweight="bold",
@@ -228,7 +228,7 @@ def _graphs_worker(queue, grid, grid_h, grid_w):
         style_ax(ax6, f"Raspodjela nagrađivanja (zadnjih {len(last_n)})")
 
         fig.suptitle(
-            f"Q-Learning — Analiza učenja | Warehouse RL  [LIVE]  ep. {n}",
+            f"Warehouse Q-Learning ep. {n}",
             color="#b4c8ff",
             fontsize=13,
             fontweight="bold",
