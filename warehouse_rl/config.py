@@ -71,3 +71,10 @@ C_HUD_GOOD   = (80, 220, 120)   # Success/positive text
 
 # ─── GRAPH VISUALIZATION ─────────────────────────────────────────────────────
 GRAPH_UPDATE_INTERVAL = 2000   # Matplotlib graph refresh interval: 2000ms (2 seconds)
+
+def apply_map_config(map_config):
+    global GRID_W, GRID_H, WIN_W, WIN_H
+    GRID_W = map_config["grid_w"]
+    GRID_H = map_config["grid_h"]
+    WIN_W = GRID_W * TILE
+    WIN_H = GRID_H * TILE + 80
