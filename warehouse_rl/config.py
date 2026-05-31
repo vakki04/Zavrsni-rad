@@ -16,7 +16,7 @@ FPS_FAST = 0                   # Mode 3: max speed (unlimited) - training only, 
 ULTRA_STEPS_PER_FRAME = 5      # In ultra mode, execute 5 agent steps per rendered frame
 
 # ─── Q-LEARNING HYPERPARAMETERS ──────────────────────────────────────────────
-EPISODES = 1500                # Total training episodes (iterations)
+EPISODES = 1200                # Total training episodes (iterations)
 MAX_STEPS = 300                # Maximum steps per episode (prevents infinite loops)
 ALPHA   = 0.15                 # Learning rate: how much to update Q-values (0.0-1.0)
 GAMMA   = 0.95                 # Discount factor: importance of future rewards (0.0-1.0)

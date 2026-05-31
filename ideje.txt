@@ -1,0 +1,53 @@
+SADRŽAJ
+Uvod
+	1. Autonomni agent u skladišnom okruženju
+1.1. Primjena autonomnih sustava u logistici
+1.2. Problem navigacije i dostave paketa
+1.3. Ciljevi i izazovi sustava
+prepreke,
+optimizacija putanje,
+trošak kretanja,
+učenje strategije.
+	2. Modeliranje skladišnog prostora
+2.1. Diskretni model okruženja
+2.2. Elementi skladišta
+agent,
+prepreke,
+pickup lokacija,
+odredište.
+2.3. Prostor stanja i akcija
+2.4. Funkcija nagrade
+2.5. Markovljev proces odlučivanja
+2.6. Vizualizacija i simulacija sustava
+	3. Primjena Q-učenja
+3.1. Osnove podržanog učenja
+3.2. Q-learning algoritam
+3.3. Strategija istraživanja prostora
+epsilon-greedy,
+eksploatacija i eksploracija.
+3.4. Proces treniranja agenta
+3.5. Hiperparametri sustava
+alpha,
+gamma,
+epsilon,
+epsilon decay.
+3.6. Ograničenja Q-učenja
+	4. Implementacija sustava
+4.1. Arhitektura aplikacije
+4.2. Implementacija skladišnog okruženja
+4.3. Implementacija algoritma
+4.4. Praćenje i spremanje rezultata
+	5. Eksperimenti i analiza rezultata
+5.1. Početna konfiguracija sustava
+5.2. Utjecaj veličine skladišta
+5.3. Utjecaj prepreka na učenje
+5.4. Analiza hiperparametara
+5.5. Stabilnost i konvergencija učenja
+5.6. Moguća proširenja sustava
+Zaključak
+Literatura
+Sažetak
+Summary
+
+=============================================================================
+
