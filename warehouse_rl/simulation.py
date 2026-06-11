@@ -3,10 +3,10 @@ import numpy as np
 import random
 import sys
 
-from config import TILE, FPS_SLOW, FPS_MED, FPS_ULTRA, EPISODES, R_PICKUP, R_GOAL, R_OBSTACLE, R_STEP, R_REVISIT, C_BG
+from config import TILE, FPS_SLOW, FPS_MED, FPS_ULTRA, EPISODES, R_PICKUP, R_GOAL, R_OBSTACLE, R_STEP, R_REVISIT
 import config
 from agent import QLearningAgent
-from graphics import (draw_grid, draw_q_overlay, draw_path, draw_pickup, draw_goal, draw_start, draw_agent_with_item, draw_hud, draw_fast_mode_overlay)
+from graphics import draw_grid, draw_q_overlay, draw_path, draw_pickup, draw_goal, draw_start, draw_agent_with_item, draw_hud
 from graphs import toggle_graphs, push_graph_update, close_graphs
 from experiment_logger import save_experiment
 
@@ -133,31 +133,38 @@ def run_simulation(map_config):
             push_graph_update(agent) 
             results_saved = True
 
-       # render asseta
+       # render asseta za sve modove osim pozadinskog
         if speed_mode < 3 or paused or agent.episode >= EPISODES:
-            screen.fill(C_BG)
+            screen.fill("#12121c")
             draw_grid(screen, GRID, tick)
             draw_q_overlay(screen, agent, GRID)
             draw_path(screen, best_path, tick)
             
+            # ako postoji put za crtanje i nismo dosli do kraja
             if current_path and step_index > 0 and step_index <= len(current_path):
+                # dohvati pozicijiu i status paketa za trenutni korak
                 vr, vc, vhi = current_path[step_index - 1]
+                # nacrtaj paket (sakrij ako je pokupljen)
                 draw_pickup(screen, pickup_pos[0], pickup_pos[1], tick, collected=vhi)
+                # nacrtaj agenta (ako ima paket onda sa paketom)
                 draw_agent_with_item(screen, vr, vc, tick, vhi)
             else:
+                # nacrtaj samo paket na mapi
                 draw_pickup(screen, pickup_pos[0], pickup_pos[1], tick, collected=False)
 
             draw_goal(screen, GOAL[1], GOAL[0], tick)
             draw_start(screen, START[0], START[1])
             draw_hud(screen, agent, agent.episode, speed_mode, paused, font_sm, font_md)
+            # osvjezi ekran
             pygame.display.flip()
         else:
+            # osvjezi ekran svki 60. tick
             if tick % 60 == 0:
-                screen.fill(C_BG)
-                draw_fast_mode_overlay(screen, agent, font_md, font_sm)
+                screen.fill("#12121c")
                 draw_hud(screen, agent, agent.episode, speed_mode, paused, font_sm, font_md)
                 pygame.display.flip()
 
+        # prilagodi brzinu
         if paused: clock.tick(15)
         elif speed_mode == 0: clock.tick(FPS_SLOW) 
         elif speed_mode == 1: clock.tick(FPS_MED)  
