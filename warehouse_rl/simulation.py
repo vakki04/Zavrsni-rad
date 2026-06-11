@@ -3,11 +3,11 @@ import numpy as np
 import random
 import sys
 
-from config import TILE, FPS_SLOW, FPS_MED, FPS_ULTRA, EPISODES, R_PICKUP, R_GOAL, R_OBSTACLE, R_STEP, R_REVISIT
+from config import TILE, EPISODES, R_PICKUP, R_GOAL, R_OBSTACLE, R_STEP, R_REVISIT
 import config
 from agent import QLearningAgent
 from graphics import draw_grid, draw_q_overlay, draw_path, draw_pickup, draw_goal, draw_start, draw_agent_with_item, draw_hud
-from graphs import toggle_graphs, push_graph_update, close_graphs
+from graphs import show_graphs, close_graphs
 from experiment_logger import save_experiment
 
 # napravi grid sa zadanim dimenzijama, na rub stavi granicne zidove
@@ -78,6 +78,10 @@ def run_simulation(map_config):
     best_path = []
     results_saved = False
 
+    FPS_SLOW = 8                   
+    FPS_MED = 30                   
+    FPS_ULTRA = 120             
+
     # varijable za vizualizaciju odradenog puta 
     current_path = []
     step_index = 0
@@ -93,7 +97,7 @@ def run_simulation(map_config):
                 k = event.key
                 if k in (pygame.K_q, pygame.K_ESCAPE): running = False
                 elif k == pygame.K_SPACE: paused = not paused
-                elif k == pygame.K_g: toggle_graphs(agent, GRID)
+                elif k == pygame.K_g: show_graphs(agent, GRID)
                 elif k == pygame.K_r:
                     close_graphs()
                     agent = QLearningAgent(N_STATES, N_ACTIONS)
@@ -129,8 +133,7 @@ def run_simulation(map_config):
             best_path = agent.get_best_path(START, GOAL, pickup_pos, ACTIONS, state_id, valid)
             # spremanje za analizu
             # save_experiment(f"alpha_{config.ALPHA}", agent.rewards_history, agent.success_history, agent.steps_history, agent.epsilon_history, agent.avg100)
-            # posalji podatke za crtanje grafova
-            push_graph_update(agent) 
+            # posalji podatke za crtanje grafova 
             results_saved = True
 
        # render asseta za sve modove osim pozadinskog

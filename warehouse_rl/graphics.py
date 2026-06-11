@@ -1,12 +1,6 @@
 import pygame
 from config import (
     TILE,
-    WIN_W,
-    C_HUD_BG,
-    C_HUD_TEXT,
-    C_HUD_ACCENT,
-    C_HUD_WARN,
-    C_HUD_GOOD,
     EPISODES,
     TILE
 )
@@ -187,8 +181,8 @@ def draw_hud(surf, agent, episode, speed_mode, paused, font_sm, font_md):
     hud_w = surf.get_width()
 
     # crtanje pozadine i gornje linije
-    pygame.draw.rect(surf, C_HUD_BG, (0, hud_y, hud_w, hud_h))
-    pygame.draw.line(surf, C_HUD_ACCENT, (0, hud_y), (hud_w, hud_y), 2)
+    pygame.draw.rect(surf, "#0c0c14", (0, hud_y, hud_w, hud_h))
+    pygame.draw.line(surf, "#50b4ff", (0, hud_y), (hud_w, hud_y), 2)
 
     # prikupljanje statistike agenta
     avg = np.mean(agent.recent) if agent.recent else 0
@@ -202,16 +196,16 @@ def draw_hud(surf, agent, episode, speed_mode, paused, font_sm, font_md):
     # stupci za hud
     columns = [
         [
-            (f"Epizoda:  {episode:>4}/{EPISODES}", C_HUD_TEXT),
-            (f"Nagrada:  {avg:>7.1f} (avg100)", C_HUD_ACCENT if avg > 0 else C_HUD_WARN),
+            (f"Epizoda:  {episode:>4}/{EPISODES}", "#b5c6f5"),
+            (f"Nagrada:  {avg:>7.1f} (avg100)", "#50b4ff" if avg > 0 else "#ffa03c"),
         ],
         [
-            (f"Epsilon:  {eps_pct:>3}%", C_HUD_TEXT),
-            (f"Uspjeh:   {suc:>3}/100", C_HUD_GOOD if suc > 50 else C_HUD_WARN),
+            (f"Epsilon:  {eps_pct:>3}%", "#b5c6f5"),
+            (f"Uspjeh:   {suc:>3}/100", "#50dc78" if suc > 50 else "#ffa03c"),
         ],
         [
-            (f"Brzina:  [{sp_name}]", C_HUD_ACCENT),
-            (f"{'[PAUZA]' if paused else '[G]graf [R]reset [ESC]izlaz'}", C_HUD_WARN if paused else C_HUD_TEXT),
+            (f"Brzina:  [{sp_name}]", "#50b4ff"),
+            (f"{'[PAUZA]' if paused else '[G]graf [R]reset [ESC]izlaz'}", "#ffa03c" if paused else "#b5c6f5"),
         ]
     ]
 
@@ -232,13 +226,13 @@ def draw_hud(surf, agent, episode, speed_mode, paused, font_sm, font_md):
         pygame.draw.rect(surf, color, (bar_x, y, int(bar_w * progress), 12))
         
         # tekst centriran na traci
-        txt_surf = font_sm.render(text, True, C_HUD_TEXT)
+        txt_surf = font_sm.render(text, True, "#b5c6f5")
         txt_x = bar_x + bar_w // 2 - txt_surf.get_width() // 2
         surf.blit(txt_surf, (txt_x, y - 2))
 
     # traka napretka epizoda
     prog = min(1.0, episode / EPISODES)
-    draw_bar(hud_y + 14, prog, C_HUD_ACCENT, f"{int(prog*100)}%")
+    draw_bar(hud_y + 14, prog, "#50b4ff", f"{int(prog*100)}%")
 
     # traka epsilon pada (istrazivanja)
-    draw_bar(hud_y + 48, agent.epsilon, C_HUD_WARN, f"ε={agent.epsilon:.3f}")
+    draw_bar(hud_y + 48, agent.epsilon, "#ffa03c", f"ε={agent.epsilon:.3f}")
