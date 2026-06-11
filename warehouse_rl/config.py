@@ -18,7 +18,7 @@ ULTRA_STEPS_PER_FRAME = 5      # In ultra mode, execute 5 agent steps per render
 # ─── Q-LEARNING HYPERPARAMETERS ──────────────────────────────────────────────
 EPISODES = 1200                # Total training episodes (iterations)
 MAX_STEPS = 300                # Maximum steps per episode (prevents infinite loops)
-ALPHA   = 0.15                 # Learning rate: how much to update Q-values (0.0-1.0)
+ALPHA   = 0.3                # Learning rate: how much to update Q-values (0.0-1.0)
 GAMMA   = 0.95                 # Discount factor: importance of future rewards (0.0-1.0)
 EPS_START = 1.0                # Initial epsilon: 100% random exploration
 EPS_END   = 0.05               # Final epsilon: 5% exploration, 95% exploitation
